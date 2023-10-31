@@ -1,0 +1,23 @@
+name: Spin and Network
+description: This action spins up a container and connects it to a tailnet
+runs: 
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/kickoff.sh ${{ inputs.compose-file }} ${{ inputs.tailnet-authkey }} ${{ inputs.ssh-key }} ${{ inputs.ssh-pub }}
+      shell: bash
+inputs:
+  compose-file:
+    description: 'Enter the location of a compose file to start a container'
+    required: true
+  tailnet-authkey:
+    description: 'Enter a tailnet auth key to join a tailnet with. Make sure its ephemeral!'
+    required: true
+  ssh-key:
+    description: 'Enter an ssh key to use if you have machines setup with one'
+    required: false
+  ssh-pub:
+    description: 'Enter the matching public key'
+    required: false
+branding:
+  icon: 'truck'  
+  color: 'orange'
